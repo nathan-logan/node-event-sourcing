@@ -1,5 +1,7 @@
 # node-event-sourcing
 
+In order to get a better grasp on Event Sourcing/CQRS, I'm writing a NodeJS implementation of the pattern.
+
 Event Sourcing & CQRS written in TypeScript
 
 ## Todo
