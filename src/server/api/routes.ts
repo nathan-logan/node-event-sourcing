@@ -1,14 +1,26 @@
-import { IncomingMessage, ServerResponse } from 'http';
-import logger from '../../logger';
+import Hapi from '@hapi/hapi';
+import commandHandler from '../../commandHandler';
+import { Command } from '../../types/commands';
 
-const routeHandler = (req: IncomingMessage, res: ServerResponse): void => {
-  logger.debug('Received message at %s', req.url);
+const handleCommandRequest = (request: Hapi.Request, h: Hapi.ResponseToolkit) => {
+  const { params, payload } = request;
+  const { command } = params;
 
-  const data = { message: 'ok' };
+  if (!command) {
+    return 'Missing command';
+  }
 
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  res.write(JSON.stringify(data));
-  res.end();
+  commandHandler.handleCommand(payload as Command);
+
+  return h.response(`Handled command ${command}`).code(200);
 };
 
-export default routeHandler;
+const buildRoutes = (server: Hapi.Server): void => {
+  server.route({
+    method: 'POST',
+    path: '/cmd/{command}',
+    handler: handleCommandRequest,
+  });
+};
+
+export default buildRoutes;

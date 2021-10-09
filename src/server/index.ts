@@ -1,11 +1,9 @@
-import http from 'http';
+import Hapi from '@hapi/hapi';
 import config from '../config';
-import logger from '../logger';
 
-const createServer = (listener: http.RequestListener): http.Server => {
-  const server = http.createServer(listener);
-  server.listen(config.port, () => {
-    logger.info('Server listening on port %s', config.port);
+const createServer = async (): Promise<Hapi.Server> => {
+  const server = Hapi.server({
+    port: config.port,
   });
 
   return server;
