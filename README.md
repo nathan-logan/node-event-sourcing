@@ -2,6 +2,18 @@
 
 Event Sourcing & CQRS written in TypeScript
 
-Setting up Postgres locally:
+## Todo
 
-`docker run --name postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=mysecret -d postgres`
+- Event store
+- Event bus
+- Publishers & Subscribers
+- Sagas
+- Handlers
+
+## Installation
+
+1. Clone repo
+2. Install dependencies
+  `npm install` or `yarn install`
+3. Setup Postgres locally
+    `docker run --name postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=mysecret -d postgres`

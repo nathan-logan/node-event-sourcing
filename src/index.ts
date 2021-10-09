@@ -1,5 +1,8 @@
+import createServer from './server';
+import routeHandler from './server/api/routes';
+
 const main = (): void => {
-  console.log('Hello world');
-}
+  const server = createServer(routeHandler);
+};
 
 main();
