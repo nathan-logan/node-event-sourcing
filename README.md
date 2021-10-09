@@ -18,4 +18,4 @@ Event Sourcing & CQRS written in TypeScript
 2. Install dependencies
   `npm install` or `yarn install`
 3. Setup Postgres locally
-    `docker run --name postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=mysecret -d postgres`
+    `docker run --name postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=mysecret -p 5432:5432 -d postgres`
