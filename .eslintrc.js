@@ -12,5 +12,12 @@ module.exports = {
   ],
   rules: {
     'import/extensions': 'off',
+    'max-len': 'off',
+    '@typescript-eslint/no-explicit-any': [
+      'warn',
+      {
+        fixToUnknown: true,
+      },
+    ],
   },
 };
