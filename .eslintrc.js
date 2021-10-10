@@ -26,5 +26,8 @@ module.exports = {
         varsIgnorePattern: '^_',
       },
     ],
+    // fixes a false postive in typescript enum declarations
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
   },
 };

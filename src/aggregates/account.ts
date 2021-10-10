@@ -1,25 +1,25 @@
-// should export a set of commands for this aggregate
-// each command should be a function that accepts the command payload and returns an event object to be saved
-
 import logger from '../logger';
-import { Command, HandleAccountCreateCommand } from '../types/commands';
-import { Event } from '../types/event';
+import { Aggregate } from '../types/aggregate';
+import { Command, AccountCreateCommand } from '../types/commands';
+import { AggregateEvent, AggregateEventType } from '../types/event';
 
-const handleAccountCreateCommand = (command: HandleAccountCreateCommand): Event => {
+const handleAccountCreateCommand = (command: AccountCreateCommand): AggregateEvent => {
   logger.debug('Received create account command %o', command);
 
-  const accountCreatedEvent: Event = {
+  const accountCreatedEvent: AggregateEvent = {
+    name: AggregateEventType.ACCOUNT_CREATED,
     createdAt: new Date(),
     createdBy: 'uuid here',
+    message: command.payload,
   };
 
   return accountCreatedEvent;
 };
 
-const handleAccountCommand = (command: Command): Event | null => {
+const handleAccountCommand = (command: Command): AggregateEvent | null => {
   switch (command.type) {
-    case 'AccountCreate':
-      return handleAccountCreateCommand((command as HandleAccountCreateCommand));
+    case 'accountCreateCommand':
+      return handleAccountCreateCommand((command as AccountCreateCommand));
     default:
       break;
   }
@@ -27,4 +27,9 @@ const handleAccountCommand = (command: Command): Event | null => {
   return null;
 };
 
-export default handleAccountCommand;
+const accountAggregate: Aggregate = {
+  name: 'accounts',
+  handler: handleAccountCommand,
+};
+
+export default accountAggregate;

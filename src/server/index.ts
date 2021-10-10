@@ -1,7 +1,7 @@
 import Hapi from '@hapi/hapi';
 import config from '../config';
 
-const createServer = async (): Promise<Hapi.Server> => {
+const createServer = (): Hapi.Server => {
   const server = Hapi.server({
     port: config.port,
   });
