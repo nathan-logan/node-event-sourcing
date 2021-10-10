@@ -6,11 +6,13 @@ Event Sourcing & CQRS written in TypeScript
 
 ## Todo
 
-- Event store
-- Event bus
-- Publishers & Subscribers
-- Sagas
-- Handlers
+- Add aggregate loader ✔
+  - register() command to register aggregates ✔
+  - retrieve an aggregate to call its command handler ✔
+- Store events after every command is handled ✔
+- Publish events
+- Subscribe to events (sagas)
+- Replay events
 
 ## Installation
 

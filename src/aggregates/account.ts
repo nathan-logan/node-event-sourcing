@@ -6,6 +6,8 @@ import { AggregateEvent, AggregateEventType } from '../types/event';
 const handleAccountCreateCommand = (command: AccountCreateCommand): AggregateEvent => {
   logger.debug('Received create account command %o', command);
 
+  // create the account here
+
   const accountCreatedEvent: AggregateEvent = {
     name: AggregateEventType.ACCOUNT_CREATED,
     createdAt: new Date(),
@@ -24,6 +26,7 @@ const handleAccountCommand = (command: Command): AggregateEvent | null => {
       break;
   }
 
+  // handle this case where a command isn't handled
   return null;
 };
 
