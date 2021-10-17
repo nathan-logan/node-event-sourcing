@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
 import logger from '../logger';
-import { AggregateEvent } from '../types/event';
+import { AggregateEvent } from '../types/events';
 
 class EventStore {
   private client: Pool;
@@ -29,7 +29,7 @@ class EventStore {
       CREATE TABLE events (
         id serial CONSTRAINT firstkey PRIMARY KEY NOT NULL,
         event_name varchar NOT NULL,
-        created_at date NOT NULL,
+        created_at timestamp without time zone NOT NULL,
         created_by varchar NOT NULL,
         message jsonb
       );
@@ -39,7 +39,7 @@ class EventStore {
   }
 
   private eventsTableExists = async (): Promise<boolean> => {
-    const result = await this.client.query('SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name   = \'events\')');
+    const result = await this.client.query('SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = \'events\')');
     return result.rows[0].exists;
   }
 

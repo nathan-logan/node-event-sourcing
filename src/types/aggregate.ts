@@ -1,5 +1,5 @@
 import { Command } from './commands';
-import { AggregateEvent } from './event';
+import { AggregateEvent } from './events';
 
 export interface Aggregate {
   name: string;
@@ -8,4 +8,9 @@ export interface Aggregate {
 
 export interface Aggregates {
   [key: string]: Aggregate;
+}
+
+export interface Account {
+  id: string;
+  name: string;
 }

@@ -1,7 +1,7 @@
 import logger from '../logger';
 import { Aggregate } from '../types/aggregate';
 import { Command, AccountCreateCommand } from '../types/commands';
-import { AggregateEvent, AggregateEventType } from '../types/event';
+import { AggregateEvent, AggregateEventType } from '../types/events';
 
 const handleAccountCreateCommand = (command: AccountCreateCommand): AggregateEvent => {
   logger.debug('Received create account command %o', command);

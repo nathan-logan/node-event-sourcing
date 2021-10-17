@@ -10,6 +10,8 @@ Event Sourcing & CQRS written in TypeScript
   - register() command to register aggregates ✔
   - retrieve an aggregate to call its command handler ✔
 - Store events after every command is handled ✔
+- Create table for an aggregate if it doesn't exist ✔
+- If aggregate table exists check for schema changes and add columns if required ✔
 - Publish events
 - Subscribe to events (sagas)
 - Replay events

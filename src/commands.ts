@@ -1,4 +1,4 @@
-import AggregateLoader from './aggregateLoader';
+import AggregateLoader from './aggregates';
 import logger from './logger';
 import EventStore from './store';
 import { Command } from './types/commands';

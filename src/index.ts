@@ -1,19 +1,22 @@
-import AggregateLoader from './aggregateLoader';
-import accountAggregate from './aggregates/account';
-import CommandHandler from './commandHandler';
+import AggregateLoader from './aggregates';
+import accountAggregate from './aggregates/accounts';
+import CommandHandler from './commands';
 import config from './config';
-import db from './db';
+import pgClient from './db';
 import logger from './logger';
+import RepositoryLoader from './repositories';
+import AccountRepo from './repositories/accounts';
 import createServer from './server';
 import routeHandler from './server/api/routes';
 import EventStore from './store';
 
 const main = async (): Promise<void> => {
-  const pgClient = db;
-
   const eventStore = new EventStore(pgClient);
 
   await eventStore.init();
+
+  const repoLoader = new RepositoryLoader(pgClient);
+  await repoLoader.init(AccountRepo);
 
   const aggregateLoader = new AggregateLoader();
   aggregateLoader.register(accountAggregate);
