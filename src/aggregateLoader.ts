@@ -9,6 +9,10 @@ class AggregateLoader {
   }
 
   public register = (aggregate: Aggregate): void => {
+    if (this.aggregates[aggregate.name]) {
+      throw new Error(`Aggregate already exists with name "${aggregate.name}"`);
+    }
+
     this.aggregates[aggregate.name] = aggregate;
     logger.debug('Registered aggregate "%s"', aggregate.name);
   }
@@ -17,7 +21,7 @@ class AggregateLoader {
     const aggregate = this.aggregates[aggregateName];
 
     if (!aggregate) {
-      throw new Error('Cannot find aggregate');
+      throw new Error(`Cannot find aggregate "${aggregateName}"`);
     }
 
     return aggregate;
